@@ -83,7 +83,7 @@ config RISCV
 	select HAVE_CONTEXT_TRACKING
 	select HAVE_DEBUG_KMEMLEAK
 	select HAVE_DMA_CONTIGUOUS if MMU
-	select HAVE_EBPF_JIT if MMU
+	select HAVE_EBPF_JIT if (MMU && RISCV_ISA_M)
 	select HAVE_FUNCTION_ERROR_INJECTION
 	select HAVE_GCC_PLUGINS
 	select HAVE_GENERIC_VDSO if MMU && 64BIT
@@ -323,15 +323,25 @@ config NODES_SHIFT
 	  Specify the maximum number of NUMA Nodes available on the target
 	  system.  Increases memory reserved to accommodate various tables.
 
+config RISCV_ISA_M
+	bool "Emit multiplication instructions when building Linux"
+	default y
+	help
+	  Adds "M" to the ISA subsets that the toolchain is allowed to emit
+	  when building Linux, which results in multiplication, division, and
+	  remainder instructions in the Linux binary.
+
+	  If you don't know what to do here, say Y.
+
 config RISCV_ISA_C
 	bool "Emit compressed instructions when building Linux"
 	default y
 	help
-	   Adds "C" to the ISA subsets that the toolchain is allowed to emit
-	   when building Linux, which results in compressed instructions in the
-	   Linux binary.
+	  Adds "C" to the ISA subsets that the toolchain is allowed to emit
+	  when building Linux, which results in compressed instructions in the
+	  Linux binary.
 
-	   If you don't know what to do here, say Y.
+	  If you don't know what to do here, say Y.
 
 menu "supported PMU type"
 	depends on PERF_EVENTS

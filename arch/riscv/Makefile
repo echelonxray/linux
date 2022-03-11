@@ -46,8 +46,10 @@ endif
 endif
 
 # ISA string setting
-riscv-march-$(CONFIG_ARCH_RV32I)	:= rv32ima
-riscv-march-$(CONFIG_ARCH_RV64I)	:= rv64ima
+riscv-march-$(CONFIG_ARCH_RV32I)	:= rv32i
+riscv-march-$(CONFIG_ARCH_RV64I)	:= rv64i
+riscv-march-$(CONFIG_RISCV_ISA_M)	:= $(riscv-march-y)m
+riscv-march-y				:= $(riscv-march-y)a
 riscv-march-$(CONFIG_FPU)		:= $(riscv-march-y)fd
 riscv-march-$(CONFIG_RISCV_ISA_C)	:= $(riscv-march-y)c
 
