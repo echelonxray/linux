@@ -5,6 +5,8 @@ SUBLEVEL = 0
 EXTRAVERSION = -rc7
 NAME = Superb Owl
 
+EXTRAVERSION := $(EXTRAVERSION)-echelon
+
 # *DOCUMENTATION*
 # To see a list of typical targets execute "make help"
 # More info can be located in ./README
