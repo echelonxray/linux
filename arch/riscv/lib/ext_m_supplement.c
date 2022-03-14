@@ -53,10 +53,10 @@
 
 #include <linux/export.h>
 
-#define U__32_MSB (((unsigned       int)1) <<  31)
-#define U__64_MSB (((unsigned long long)1) <<  63)
+#define UINT_MSB (((unsigned       int)1) <<  31)
+#define ULL_MSB  (((unsigned long long)1) <<  63)
 #ifdef CONFIG_64BIT
-#define U_128_MSB (((unsigned  __int128)1) << 127)
+#define U128_MSB (((unsigned  __int128)1) << 127)
 #endif
 
 signed int __mulsi3(signed int a, signed int b)
@@ -163,7 +163,7 @@ signed int __divsi3(signed int a, signed int b)
 	j = 0;
 	i = 0;
 	while (ua >= ub) {
-		if (ub & U__32_MSB) {
+		if (ub & UINT_MSB) {
 			ua -= ub;
 			j |= 1u << i;
 			break;
@@ -209,7 +209,7 @@ signed long long __divdi3(signed long long a, signed long long b)
 	j = 0;
 	i = 0;
 	while (ua >= ub) {
-		if (ub & U__64_MSB) {
+		if (ub & ULL_MSB) {
 			ua -= ub;
 			j |= 1ull << i;
 			break;
@@ -256,7 +256,7 @@ signed __int128 __divti3(signed __int128 a, signed __int128 b)
 	j = 0;
 	i = 0;
 	while (ua >= ub) {
-		if (ub & U_128_MSB) {
+		if (ub & U128_MSB) {
 			ua -= ub;
 			j |= ((unsigned __int128)1) << i;
 			break;
@@ -293,7 +293,7 @@ unsigned int __udivsi3(unsigned int a, unsigned int b)
 	j = 0;
 	i = 0;
 	while (a >= b) {
-		if (b & U__32_MSB) {
+		if (b & UINT_MSB) {
 			a -= b;
 			j |= 1u << i;
 			break;
@@ -325,7 +325,7 @@ unsigned long long __udivdi3(unsigned long long a, unsigned long long b)
 	j = 0;
 	i = 0;
 	while (a >= b) {
-		if (b & U__64_MSB) {
+		if (b & ULL_MSB) {
 			a -= b;
 			j |= 1ull << i;
 			break;
@@ -358,7 +358,7 @@ unsigned __int128 __udivti3(unsigned __int128 a, unsigned __int128 b)
 	j = 0;
 	i = 0;
 	while (a >= b) {
-		if (b & U_128_MSB) {
+		if (b & U128_MSB) {
 			a -= b;
 			j |= ((unsigned __int128)1) << i;
 			break;
@@ -399,7 +399,7 @@ signed int __modsi3(signed int a, signed int b)
 
 	i = 0;
 	while (ua >= ub) {
-		if (ub & U__32_MSB) {
+		if (ub & UINT_MSB) {
 			ua -= ub;
 			break;
 		}
@@ -440,7 +440,7 @@ signed long long __moddi3(signed long long a, signed long long b)
 
 	i = 0;
 	while (ua >= ub) {
-		if (ub & U__64_MSB) {
+		if (ub & ULL_MSB) {
 			ua -= ub;
 			break;
 		}
@@ -482,7 +482,7 @@ signed __int128 __modti3(signed __int128 a, signed __int128 b)
 
 	i = 0;
 	while (ua >= ub) {
-		if (ub & U_128_MSB) {
+		if (ub & U128_MSB) {
 			ua -= ub;
 			break;
 		}
@@ -514,7 +514,7 @@ unsigned int __umodsi3(unsigned int a, unsigned int b)
 
 	i = 0;
 	while (a >= b) {
-		if (b & U__32_MSB) {
+		if (b & UINT_MSB) {
 			a -= b;
 			break;
 		}
@@ -541,7 +541,7 @@ unsigned long long __umoddi3(unsigned long long a, unsigned long long b)
 
 	i = 0;
 	while (a >= b) {
-		if (b & U__64_MSB) {
+		if (b & ULL_MSB) {
 			a -= b;
 			break;
 		}
@@ -569,7 +569,7 @@ unsigned __int128 __umodti3(unsigned __int128 a, unsigned __int128 b)
 
 	i = 0;
 	while (a >= b) {
-		if (b & U_128_MSB) {
+		if (b & U128_MSB) {
 			a -= b;
 			break;
 		}
