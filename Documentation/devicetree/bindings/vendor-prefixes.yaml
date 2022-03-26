@@ -571,6 +571,8 @@ patternProperties:
     description: InfoVision Optoelectronics Kunshan Co. Ltd.
   "^ingenic,.*":
     description: Ingenic Semiconductor
+  "^injoinic,.*":
+    description: Injoinic Technology Corp.
   "^innolux,.*":
     description: Innolux Corporation
   "^inside-secure,.*":
@@ -814,6 +816,9 @@ patternProperties:
     description: Mundo Reader S.L.
   "^murata,.*":
     description: Murata Manufacturing Co., Ltd.
+  "^mxic,.*":
+    description: Macronix International Co., Ltd.
+    deprecated: true
   "^mxicy,.*":
     description: Macronix International Co., Ltd.
   "^myir,.*":
