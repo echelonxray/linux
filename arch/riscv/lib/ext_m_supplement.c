@@ -53,10 +53,10 @@
 
 #include <linux/export.h>
 
-#define UINT_MSB (((unsigned       int)1) <<  31)
-#define ULL_MSB  (((unsigned long long)1) <<  63)
+#define UINT_MSB (((unsigned       int)1) <<  (32 - 1))
+#define  ULL_MSB (((unsigned long long)1) <<  (64 - 1))
 #ifdef CONFIG_64BIT
-#define U128_MSB (((unsigned  __int128)1) << 127)
+#define U128_MSB (((unsigned  __int128)1) << (128 - 1))
 #endif
 
 signed int __mulsi3(signed int a, signed int b)
