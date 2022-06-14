@@ -3,14 +3,18 @@ This is my fork of the Linux kernel.  Here is a list of the changes:
 --Added custom version suffix "-echelon" to indicate that this is a patched
   fork by echelonxray in kernel builds and added this text to this README.
 --Added RISC-V No M-extension support.  Added new config symbol RISCV_ISA_M
-  to control this.
+  to control this.  It is located in menuconfig at "Platform type" > 
+  "Emit multiplication instructions when building Linux".
 
 I intend to keep this fork up to date with the upstream vanilla kernel.
 The master branch contains my patched kernel.  The vanilla branch tracks
 the upstream kernel 1-to-1.  You can generate a diff of the differences by
 simply running "git diff vanilla..master".  The idea is to keep the kernel
 version tags intact and correct for what I think would be a close
-approximation of the the upstream kernel had my changes been accepted.
+approximation of the the upstream kernel had my changes been accepted.  I
+intend to merge in the upstream kernel tree for each tagged rc/release
+version.  The merges should be tagged with the corresponding upstream tag
+suffixed with "-echelon".
 
 Why a fork and not submitted upstream?:
 Simple.  The kernel maintainers refused some of the features that I wanted.
