@@ -13,7 +13,7 @@ permissions:
   pull-requests: read
 
 jobs:
-  linux-ubuntu_test:
+  br1:
     runs-on: "ubuntu-latest"
     steps:
       - name: 'Checkout'
@@ -28,7 +28,7 @@ jobs:
       - name: 'Update Runner'
         run: 'sudo .github/workflows/build_and_run/update.sh'
 
-      - name: 'Install Build Dependencies'
+      - name: 'Install Dependencies'
         run: 'sudo .github/workflows/build_and_run/install_dep.sh'
 
       - name: 'Build 1'
