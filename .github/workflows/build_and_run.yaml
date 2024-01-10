@@ -1,0 +1,35 @@
+name: 'Build and Run'
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+  pull_request:
+  create:
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  linux-ubuntu_test:
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v4
+
+      - name: 'Git Show'
+        run: 'git show'
+
+      - name: 'Update Runner'
+        run: 'sudo .github/workflows/build_and_run/update.sh'
+
+      - name: 'Install Build Dependencies'
+        run: 'sudo .github/workflows/build_and_run/install_dep.sh'
+
+      - name: 'Build 1'
+        run: '.github/workflows/build_and_run/build_1.sh'
+
+      - name: 'Run 1'
+        run: '.github/workflows/build_and_run/run_1.sh'
