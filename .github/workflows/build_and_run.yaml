@@ -19,7 +19,7 @@ jobs:
       - name: 'Checkout'
         uses: actions/checkout@v4
         with:
-          fetch-depth: '0'
+          fetch-depth: '3'
           fetch-tags: 'true'
 
       - name: 'Git Show'
