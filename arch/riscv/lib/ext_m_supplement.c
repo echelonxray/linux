@@ -59,7 +59,7 @@
 #define U128_MSB (((unsigned  __int128)1) << (128 - 1))
 #endif
 
-signed int __mulsi3(signed int a, signed int b)
+signed int noinline __mulsi3(signed int a, signed int b)
 {
 	unsigned int ua;
 	unsigned int ub;
@@ -86,7 +86,7 @@ signed int __mulsi3(signed int a, signed int b)
 }
 EXPORT_SYMBOL(__mulsi3);
 
-signed long long __muldi3(signed long long a, signed long long b)
+signed long long noinline __muldi3(signed long long a, signed long long b)
 {
 	unsigned long long ua;
 	unsigned long long ub;
@@ -114,7 +114,7 @@ signed long long __muldi3(signed long long a, signed long long b)
 EXPORT_SYMBOL(__muldi3);
 
 #ifdef CONFIG_64BIT
-signed __int128 __multi3(signed __int128 a, signed __int128 b)
+signed __int128 noinline __multi3(signed __int128 a, signed __int128 b)
 {
 	unsigned __int128 ua;
 	unsigned __int128 ub;
@@ -142,7 +142,7 @@ signed __int128 __multi3(signed __int128 a, signed __int128 b)
 EXPORT_SYMBOL(__multi3);
 #endif
 
-signed int __divsi3(signed int a, signed int b)
+signed int noinline __divsi3(signed int a, signed int b)
 {
 	unsigned int ua;
 	unsigned int ub;
@@ -188,7 +188,7 @@ signed int __divsi3(signed int a, signed int b)
 }
 EXPORT_SYMBOL(__divsi3);
 
-signed long long __divdi3(signed long long a, signed long long b)
+signed long long noinline __divdi3(signed long long a, signed long long b)
 {
 	unsigned long long ua;
 	unsigned long long ub;
@@ -235,7 +235,7 @@ signed long long __divdi3(signed long long a, signed long long b)
 EXPORT_SYMBOL(__divdi3);
 
 #ifdef CONFIG_64BIT
-signed __int128 __divti3(signed __int128 a, signed __int128 b)
+signed __int128 noinline __divti3(signed __int128 a, signed __int128 b)
 {
 	unsigned __int128 ua;
 	unsigned __int128 ub;
@@ -282,7 +282,7 @@ signed __int128 __divti3(signed __int128 a, signed __int128 b)
 EXPORT_SYMBOL(__divti3);
 #endif
 
-unsigned int __udivsi3(unsigned int a, unsigned int b)
+unsigned int noinline __udivsi3(unsigned int a, unsigned int b)
 {
 	unsigned int j;
 	unsigned int i;
@@ -314,7 +314,7 @@ unsigned int __udivsi3(unsigned int a, unsigned int b)
 }
 EXPORT_SYMBOL(__udivsi3);
 
-unsigned long long __udivdi3(unsigned long long a, unsigned long long b)
+unsigned long long noinline __udivdi3(unsigned long long a, unsigned long long b)
 {
 	unsigned long long j;
 	unsigned long long i;
@@ -347,7 +347,7 @@ unsigned long long __udivdi3(unsigned long long a, unsigned long long b)
 EXPORT_SYMBOL(__udivdi3);
 
 #ifdef CONFIG_64BIT
-unsigned __int128 __udivti3(unsigned __int128 a, unsigned __int128 b)
+unsigned __int128 noinline __udivti3(unsigned __int128 a, unsigned __int128 b)
 {
 	unsigned __int128 j;
 	unsigned __int128 i;
@@ -380,7 +380,7 @@ unsigned __int128 __udivti3(unsigned __int128 a, unsigned __int128 b)
 EXPORT_SYMBOL(__udivti3);
 #endif
 
-signed int __modsi3(signed int a, signed int b)
+signed int noinline __modsi3(signed int a, signed int b)
 {
 	unsigned int ua;
 	unsigned int ub;
@@ -421,7 +421,7 @@ signed int __modsi3(signed int a, signed int b)
 }
 EXPORT_SYMBOL(__modsi3);
 
-signed long long __moddi3(signed long long a, signed long long b)
+signed long long noinline __moddi3(signed long long a, signed long long b)
 {
 	unsigned long long ua;
 	unsigned long long ub;
@@ -463,7 +463,7 @@ signed long long __moddi3(signed long long a, signed long long b)
 EXPORT_SYMBOL(__moddi3);
 
 #ifdef CONFIG_64BIT
-signed __int128 __modti3(signed __int128 a, signed __int128 b)
+signed __int128 noinline __modti3(signed __int128 a, signed __int128 b)
 {
 	unsigned __int128 ua;
 	unsigned __int128 ub;
@@ -505,7 +505,7 @@ signed __int128 __modti3(signed __int128 a, signed __int128 b)
 EXPORT_SYMBOL(__modti3);
 #endif
 
-unsigned int __umodsi3(unsigned int a, unsigned int b)
+unsigned int noinline __umodsi3(unsigned int a, unsigned int b)
 {
 	unsigned int i;
 
@@ -532,7 +532,7 @@ unsigned int __umodsi3(unsigned int a, unsigned int b)
 }
 EXPORT_SYMBOL(__umodsi3);
 
-unsigned long long __umoddi3(unsigned long long a, unsigned long long b)
+unsigned long long noinline __umoddi3(unsigned long long a, unsigned long long b)
 {
 	unsigned long long i;
 
@@ -560,7 +560,7 @@ unsigned long long __umoddi3(unsigned long long a, unsigned long long b)
 EXPORT_SYMBOL(__umoddi3);
 
 #ifdef CONFIG_64BIT
-unsigned __int128 __umodti3(unsigned __int128 a, unsigned __int128 b)
+unsigned __int128 noinline __umodti3(unsigned __int128 a, unsigned __int128 b)
 {
 	unsigned __int128 i;
 
@@ -586,6 +586,64 @@ unsigned __int128 __umodti3(unsigned __int128 a, unsigned __int128 b)
 	return a;
 }
 EXPORT_SYMBOL(__umodti3);
+#endif
+
+/*
+ * The EFI Stub uses a symbol prefix to attempt to identify and isolate all the components of the stub.
+ * However, we need to provide support for M in the stub.  So we will wrapper the supplement functions.
+ * This should be safe to do outside of libstub because RISC-V has a very large position relative
+ * addressing range.
+ */
+#ifdef CONFIG_EFI_STUB
+signed int noinline __efistub___mulsi3(signed int a, signed int b) {
+	return __mulsi3(a, b);
+}
+signed int noinline __efistub___divsi3(signed int a, signed int b) {
+	return __divsi3(a, b);
+}
+unsigned int noinline __efistub___udivsi3(unsigned int a, unsigned int b) {
+	return __udivsi3(a, b);
+}
+signed int noinline __efistub___modsi3(signed int a, signed int b) {
+	return __modsi3(a, b);
+}
+unsigned int noinline __efistub___umodsi3(unsigned int a, unsigned int b) {
+	return __umodsi3(a, b);
+}
+
+signed long long noinline __efistub___muldi3(signed long long a, signed long long b) {
+	return __muldi3(a, b);
+}
+signed long long noinline __efistub___divdi3(signed long long a, signed long long b) {
+	return __divdi3(a, b);
+}
+unsigned long long noinline __efistub___udivdi3(unsigned long long a, unsigned long long b) {
+	return __udivdi3(a, b);
+}
+signed long long noinline __efistub___moddi3(signed long long a, signed long long b) {
+	return __moddi3(a, b);
+}
+unsigned long long noinline __efistub___umoddi3(unsigned long long a, unsigned long long b) {
+	return __umoddi3(a, b);
+}
+
+#ifdef CONFIG_64BIT
+signed __int128 noinline __efistub___multi3(signed __int128 a, signed __int128 b) {
+	return __multi3(a, b);
+}
+signed __int128 noinline __efistub___divti3(signed __int128 a, signed __int128 b) {
+	return __divti3(a, b);
+}
+unsigned __int128 noinline __efistub___udivti3(unsigned __int128 a, unsigned __int128 b) {
+	return __udivti3(a, b);
+}
+signed __int128 noinline __efistub___modti3(signed __int128 a, signed __int128 b) {
+	return __modti3(a, b);
+}
+unsigned __int128 noinline __efistub___umodti3(unsigned __int128 a, unsigned __int128 b) {
+	return __umodti3(a, b);
+}
+#endif
 #endif
 
 #endif
