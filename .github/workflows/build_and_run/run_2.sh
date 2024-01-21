@@ -13,6 +13,6 @@ timeout --foreground --kill-after=60s --signal=SIGTERM 120s \
     -kernel "./arch/riscv/boot/Image" \
     -initrd "./.github/workflows/build_and_run/test_initramfs.cpio.gz" \
     -append "console=ttyS0 panic=1 rdinit=/dumb-init /testprogram" | \
-        grep -F "TRACEOUTPUT8107519475109"
+        tee /dev/stderr | grep -F "TRACEOUTPUT8107519475109" > /dev/null
 
 exit 0

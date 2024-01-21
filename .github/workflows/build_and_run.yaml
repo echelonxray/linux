@@ -55,10 +55,10 @@ jobs:
       - name: 'Install Dependencies'
         run: 'sudo .github/workflows/build_and_run/install_dep.sh'
 
-      - name: 'Build 1'
+      - name: 'Build 2'
         run: '.github/workflows/build_and_run/build_2.sh'
 
-      - name: 'Run 1'
+      - name: 'Run 2'
         run: '.github/workflows/build_and_run/run_2.sh'
 
   br3:
@@ -79,8 +79,8 @@ jobs:
       - name: 'Install Dependencies'
         run: 'sudo .github/workflows/build_and_run/install_dep.sh'
 
-      - name: 'Build 1'
+      - name: 'Build 3'
         run: '.github/workflows/build_and_run/build_3.sh'
 
-      - name: 'Run 1'
+      - name: 'Run 3'
         run: '.github/workflows/build_and_run/run_3.sh'
