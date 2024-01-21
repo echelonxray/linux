@@ -103,6 +103,7 @@ modules.order
 !.mailmap
 !.rustfmt.toml
 !/.github
+!/.github/**
 
 #
 # Generated include files

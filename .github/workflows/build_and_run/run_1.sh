@@ -1,9 +1,11 @@
-#!/bin/sh
+#!/bin/bash
 
 # Config: allnoconfig
 
-set -e
 set -x
+set -e
+
+set -o pipefail
 
 # TODO
 

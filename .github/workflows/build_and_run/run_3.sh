@@ -1,15 +1,12 @@
-#!/bin/sh
+#!/bin/bash
 
-# Config: allnoconfig
+# Config: allyesconfig
 
-set -e
 set -x
+set -e
 
-timeout --foreground --kill-after=60s --signal=SIGTERM 60s \
-                    qemu-system-riscv64 \
-                    -M virt -m 1G -cpu rv64 -display none -serial stdio -no-reboot \
-                    -bios "/usr/lib/riscv64-linux-gnu/opensbi/generic/fw_dynamic.bin" \
-                    -kernel "./arch/riscv/boot/Image" \
-                    -append "panic=1"
+set -o pipefail
+
+# TODO
 
 exit 0

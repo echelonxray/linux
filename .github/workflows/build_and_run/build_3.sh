@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 
-# Config: allnoconfig
+# Config: allyesconfig
 
 set -e
 set -x
