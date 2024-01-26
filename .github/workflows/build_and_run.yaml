@@ -118,7 +118,7 @@ jobs:
       - name: 'Run 4'
         run: '.github/workflows/build_and_run/run_4.sh'
 
-  br5-[Custom_Config]:
+  br5-Custom_Config:
     runs-on: "ubuntu-latest"
     steps:
       - name: 'Checkout'
