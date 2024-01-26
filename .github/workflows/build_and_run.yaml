@@ -13,7 +13,7 @@ permissions:
   pull-requests: read
 
 jobs:
-  br1:
+  br1-allnoconfig:
     runs-on: "ubuntu-latest"
     steps:
       - name: 'Checkout'
@@ -37,7 +37,7 @@ jobs:
       - name: 'Run 1'
         run: '.github/workflows/build_and_run/run_1.sh'
 
-  br2:
+  br2-defconfig:
     runs-on: "ubuntu-latest"
     steps:
       - name: 'Checkout'
@@ -61,7 +61,7 @@ jobs:
       - name: 'Run 2'
         run: '.github/workflows/build_and_run/run_2.sh'
 
-  br3:
+  br3-allyesconfig:
     runs-on: "ubuntu-latest"
     steps:
       - name: 'Checkout'
@@ -84,3 +84,78 @@ jobs:
 
       - name: 'Run 3'
         run: '.github/workflows/build_and_run/run_3.sh'
+
+  br4-rv32_defconfig:
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: '3'
+          fetch-tags: 'true'
+
+      - name: 'Git Show'
+        run: 'git show'
+
+      - name: 'Checkout - Echelon SBI'
+        uses: actions/checkout@v4
+        with:
+          repository: 'echelonxray/echelon_sbi'
+          ref: 'ghactions_test_version'
+          path: 'echelon_sbi'
+          fetch-depth: '0'
+          fetch-tags: 'true'
+
+      - name: 'Update Runner'
+        run: 'sudo .github/workflows/build_and_run/update.sh'
+
+      - name: 'Install Dependencies'
+        run: 'sudo .github/workflows/build_and_run/install_dep.sh'
+
+      - name: 'Build 4'
+        run: '.github/workflows/build_and_run/build_4.sh'
+
+      - name: 'Run 4'
+        run: '.github/workflows/build_and_run/run_4.sh'
+
+  br5-[Custom_Config]:
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: '3'
+          fetch-tags: 'true'
+
+      - name: 'Git Show'
+        run: 'git show'
+
+      - name: 'Checkout - Echelon Emulator (rv32iasu)'
+        uses: actions/checkout@v4
+        with:
+          repository: 'echelonxray/rv32iasu_emulator'
+          ref: 'ghactions_test_version'
+          path: 'rv32iasu_emulator'
+          fetch-depth: '0'
+          fetch-tags: 'true'
+
+      - name: 'Checkout - Echelon SBI'
+        uses: actions/checkout@v4
+        with:
+          repository: 'echelonxray/echelon_sbi'
+          ref: 'ghactions_test_version'
+          path: 'echelon_sbi'
+          fetch-depth: '0'
+          fetch-tags: 'true'
+
+      - name: 'Update Runner'
+        run: 'sudo .github/workflows/build_and_run/update.sh'
+
+      - name: 'Install Dependencies'
+        run: 'sudo .github/workflows/build_and_run/install_dep.sh'
+
+      - name: 'Build 5'
+        run: '.github/workflows/build_and_run/build_5.sh'
+
+      - name: 'Run 5'
+        run: '.github/workflows/build_and_run/run_5.sh'
