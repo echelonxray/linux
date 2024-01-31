@@ -18,6 +18,7 @@ set -e
 set -o pipefail
 
 cd $(dirname ${BASH_SOURCE[0]})
+dtc -I dts -O dtb -o ./echelon_emu_v0.1.1.dtb ./echelon_emu_v0.1.1.dts
 find . -print0 | cpio -o0 -H bin > ./../eemudiskimage.cpio
 
 exit 0

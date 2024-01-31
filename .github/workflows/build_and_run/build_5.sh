@@ -23,7 +23,7 @@ cp arch/riscv/boot/Image .github/workflows/build_and_run/eemudiskimage/kernel.bi
 cp .config .github/workflows/build_and_run/eemudiskimage/kernel.config
 cd .github/workflows/build_and_run/eemudiskimage
 cp ../test_initramfs_32.cpio.gz initramfs.cpio.gz
-./gen_image.sh
+./gen_archive.sh
 cd ../../../..
 
 exit 0
