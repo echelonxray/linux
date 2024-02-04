@@ -53,6 +53,58 @@
 
 #include <linux/export.h>
 
+/*
+ * We need to provide the prototypes in case the kernel is configured to be built with -Werror=missing-prototypes
+ */
+signed int noinline __mulsi3(signed int a, signed int b);
+signed int noinline __divsi3(signed int a, signed int b);
+unsigned int noinline __udivsi3(unsigned int a, unsigned int b);
+signed int noinline __modsi3(signed int a, signed int b);
+unsigned int noinline __umodsi3(unsigned int a, unsigned int b);
+
+signed long long noinline __muldi3(signed long long a, signed long long b);
+signed long long noinline __divdi3(signed long long a, signed long long b);
+unsigned long long noinline __udivdi3(unsigned long long a, unsigned long long b);
+signed long long noinline __moddi3(signed long long a, signed long long b);
+unsigned long long noinline __umoddi3(unsigned long long a, unsigned long long b);
+
+#ifdef CONFIG_64BIT
+signed __int128 noinline __multi3(signed __int128 a, signed __int128 b);
+signed __int128 noinline __divti3(signed __int128 a, signed __int128 b);
+unsigned __int128 noinline __udivti3(unsigned __int128 a, unsigned __int128 b);
+signed __int128 noinline __modti3(signed __int128 a, signed __int128 b);
+unsigned __int128 noinline __umodti3(unsigned __int128 a, unsigned __int128 b);
+#endif
+
+/*
+ * The EFI Stub uses a symbol prefix to attempt to identify and isolate all the components of the stub.
+ * However, we need to provide support for M in the stub.  So we will wrapper the supplement functions.
+ * This should be safe to do outside of libstub because RISC-V has a very large position relative
+ * addressing range.
+ */
+#ifdef CONFIG_EFI_STUB
+signed int noinline __efistub___mulsi3(signed int a, signed int b);
+signed int noinline __efistub___divsi3(signed int a, signed int b);
+unsigned int noinline __efistub___udivsi3(unsigned int a, unsigned int b);
+signed int noinline __efistub___modsi3(signed int a, signed int b);
+unsigned int noinline __efistub___umodsi3(unsigned int a, unsigned int b);
+
+signed long long noinline __efistub___muldi3(signed long long a, signed long long b);
+signed long long noinline __efistub___divdi3(signed long long a, signed long long b);
+unsigned long long noinline __efistub___udivdi3(unsigned long long a, unsigned long long b);
+signed long long noinline __efistub___moddi3(signed long long a, signed long long b);
+unsigned long long noinline __efistub___umoddi3(unsigned long long a, unsigned long long b);
+
+#ifdef CONFIG_64BIT
+signed __int128 noinline __efistub___multi3(signed __int128 a, signed __int128 b);
+signed __int128 noinline __efistub___divti3(signed __int128 a, signed __int128 b);
+unsigned __int128 noinline __efistub___udivti3(unsigned __int128 a, unsigned __int128 b);
+signed __int128 noinline __efistub___modti3(signed __int128 a, signed __int128 b);
+unsigned __int128 noinline __efistub___umodti3(unsigned __int128 a, unsigned __int128 b);
+#endif
+#endif
+
+
 #define UINT_MSB (((unsigned       int)1) <<  (32 - 1))
 #define  ULL_MSB (((unsigned long long)1) <<  (64 - 1))
 #ifdef CONFIG_64BIT
@@ -588,12 +640,6 @@ unsigned __int128 noinline __umodti3(unsigned __int128 a, unsigned __int128 b)
 EXPORT_SYMBOL(__umodti3);
 #endif
 
-/*
- * The EFI Stub uses a symbol prefix to attempt to identify and isolate all the components of the stub.
- * However, we need to provide support for M in the stub.  So we will wrapper the supplement functions.
- * This should be safe to do outside of libstub because RISC-V has a very large position relative
- * addressing range.
- */
 #ifdef CONFIG_EFI_STUB
 signed int noinline __efistub___mulsi3(signed int a, signed int b) {
 	return __mulsi3(a, b);
