@@ -21,7 +21,16 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: '3'
-          fetch-tags: 'true'
+      # START: Workaround bug (Fetch Tags)
+      #   Problem: actions/checkout@v4 with [fetch-tags: 'true'] fails when triggered by tag create/push event.
+      #   Solution: Use a separate and subsequent tag fetch step
+          #fetch-tags: 'true'
+          fetch-tags: 'false'
+
+      # Now we can fetch the tags
+      - name: 'Fetch Tags'
+        run: 'git fetch --tags'
+      # END: Workaround bug (Fetch Tags)
 
       - name: 'Git Show'
         run: 'git show'
@@ -45,7 +54,16 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: '3'
-          fetch-tags: 'true'
+      # START: Workaround bug (Fetch Tags)
+      #   Problem: actions/checkout@v4 with [fetch-tags: 'true'] fails when triggered by tag create/push event.
+      #   Solution: Use a separate and subsequent tag fetch step
+          #fetch-tags: 'true'
+          fetch-tags: 'false'
+
+      # Now we can fetch the tags
+      - name: 'Fetch Tags'
+        run: 'git fetch --tags'
+      # END: Workaround bug (Fetch Tags)
 
       - name: 'Git Show'
         run: 'git show'
@@ -69,7 +87,16 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: '3'
-          fetch-tags: 'true'
+      # START: Workaround bug (Fetch Tags)
+      #   Problem: actions/checkout@v4 with [fetch-tags: 'true'] fails when triggered by tag create/push event.
+      #   Solution: Use a separate and subsequent tag fetch step
+          #fetch-tags: 'true'
+          fetch-tags: 'false'
+
+      # Now we can fetch the tags
+      - name: 'Fetch Tags'
+        run: 'git fetch --tags'
+      # END: Workaround bug (Fetch Tags)
 
       - name: 'Git Show'
         run: 'git show'
@@ -93,7 +120,16 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: '3'
-          fetch-tags: 'true'
+      # START: Workaround bug (Fetch Tags)
+      #   Problem: actions/checkout@v4 with [fetch-tags: 'true'] fails when triggered by tag create/push event.
+      #   Solution: Use a separate and subsequent tag fetch step
+          #fetch-tags: 'true'
+          fetch-tags: 'false'
+
+      # Now we can fetch the tags
+      - name: 'Fetch Tags'
+        run: 'git fetch --tags'
+      # END: Workaround bug (Fetch Tags)
 
       - name: 'Git Show'
         run: 'git show'
@@ -126,7 +162,16 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: '3'
-          fetch-tags: 'true'
+      # START: Workaround bug (Fetch Tags)
+      #   Problem: actions/checkout@v4 with [fetch-tags: 'true'] fails when triggered by tag create/push event.
+      #   Solution: Use a separate and subsequent tag fetch step
+          #fetch-tags: 'true'
+          fetch-tags: 'false'
+
+      # Now we can fetch the tags
+      - name: 'Fetch Tags'
+        run: 'git fetch --tags'
+      # END: Workaround bug (Fetch Tags)
 
       - name: 'Git Show'
         run: 'git show'
