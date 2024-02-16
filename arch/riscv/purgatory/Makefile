@@ -2,7 +2,7 @@
 OBJECT_FILES_NON_STANDARD := y
 
 purgatory-y := purgatory.o sha256.o entry.o string.o ctype.o memcpy.o memset.o
-purgatory-y += strcmp.o strlen.o strncmp.o
+purgatory-y += strcmp.o strlen.o strncmp.o ext_m_supplement.o
 
 targets += $(purgatory-y)
 PURGATORY_OBJS = $(addprefix $(obj)/,$(purgatory-y))
@@ -27,6 +27,9 @@ $(obj)/strlen.o: $(srctree)/arch/riscv/lib/strlen.S FORCE
 
 $(obj)/strncmp.o: $(srctree)/arch/riscv/lib/strncmp.S FORCE
 	$(call if_changed_rule,as_o_S)
+
+$(obj)/ext_m_supplement.o: $(srctree)/arch/riscv/lib/ext_m_supplement.c FORCE
+	$(call if_changed_rule,cc_o_c)
 
 $(obj)/sha256.o: $(srctree)/lib/crypto/sha256.c FORCE
 	$(call if_changed_rule,cc_o_c)
