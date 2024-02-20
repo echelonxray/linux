@@ -32,11 +32,8 @@ $(obj)/lib-%.o: $(srctree)/lib/%.c FORCE
 $(obj)/string.o: $(srctree)/lib/string.c FORCE
 	$(call if_changed_rule,cc_o_c)
 
-$(obj)/ext_m_supplement.o: $(srctree)/arch/riscv/lib/ext_m_supplement.c FORCE
-	$(call if_changed_rule,cc_o_c)
-
 $(obj)/ctype.o: $(srctree)/lib/ctype.c FORCE
 	$(call if_changed_rule,cc_o_c)
 
-obj-y		:= cmdline_early.pi.o fdt_early.pi.o string.pi.o ext_m_supplement.pi.o ctype.pi.o lib-fdt.pi.o lib-fdt_ro.pi.o
+obj-y		:= cmdline_early.pi.o fdt_early.pi.o string.pi.o ctype.pi.o lib-fdt.pi.o lib-fdt_ro.pi.o
 extra-y		:= $(patsubst %.pi.o,%.o,$(obj-y))
