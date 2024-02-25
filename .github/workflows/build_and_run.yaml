@@ -138,7 +138,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: 'echelonxray/echelon_sbi'
-          ref: 'ghactions_test_version'
+          ref: 'ghactions_test_version-0.1'
           path: 'echelon_sbi'
           fetch-depth: '0'
           fetch-tags: 'true'
@@ -180,7 +180,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: 'echelonxray/rv32iasu_emulator'
-          ref: 'ghactions_test_version'
+          ref: 'ghactions_test_version-0.1'
           path: 'rv32iasu_emulator'
           fetch-depth: '0'
           fetch-tags: 'true'
@@ -189,7 +189,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: 'echelonxray/echelon_sbi'
-          ref: 'ghactions_test_version'
+          ref: 'ghactions_test_version-0.1'
           path: 'echelon_sbi'
           fetch-depth: '0'
           fetch-tags: 'true'
@@ -330,7 +330,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: 'echelonxray/echelon_sbi'
-          ref: 'ghactions_test_version'
+          ref: 'ghactions_test_version-0.1'
           path: 'echelon_sbi'
           fetch-depth: '0'
           fetch-tags: 'true'
@@ -372,7 +372,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: 'echelonxray/rv32iasu_emulator'
-          ref: 'ghactions_test_version'
+          ref: 'ghactions_test_version-0.1'
           path: 'rv32iasu_emulator'
           fetch-depth: '0'
           fetch-tags: 'true'
@@ -381,7 +381,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: 'echelonxray/echelon_sbi'
-          ref: 'ghactions_test_version'
+          ref: 'ghactions_test_version-0.1'
           path: 'echelon_sbi'
           fetch-depth: '0'
           fetch-tags: 'true'
