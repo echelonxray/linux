@@ -218,17 +218,6 @@ config ARCH_MMAP_RND_BITS_MAX
 config ARCH_MMAP_RND_COMPAT_BITS_MAX
 	default 17
 
-# set if we run in machine mode, cleared if we run in supervisor mode
-config RISCV_M_MODE
-	bool
-	default !MMU
-
-# set if we are running in S-mode and can use SBI calls
-config RISCV_SBI
-	bool
-	depends on !RISCV_M_MODE
-	default y
-
 config MMU
 	bool "MMU-based Paged Memory Management Support"
 	default y
@@ -236,11 +225,24 @@ config MMU
 	  Select if you want MMU-based virtualised addressing space
 	  support by paged memory management. If unsure, say 'Y'.
 
+config RISCV_M_MODE
+	bool "Kernel runs in Machine mode instead of Supervisor mode"
+	depends on !MMU
+	default !MMU
+
 config PAGE_OFFSET
-	hex
+	hex "Run-time memory address"
 	default 0xC0000000 if 32BIT && MMU
 	default 0x80000000 if !MMU
 	default 0xff60000000000000 if 64BIT
+	help
+	  What memory address should the kernel be built to run from?
+
+# set if we are running in S-mode and can use SBI calls
+config RISCV_SBI
+	bool
+	depends on !RISCV_M_MODE
+	default y
 
 config KASAN_SHADOW_OFFSET
 	hex
