@@ -234,7 +234,7 @@ config PAGE_OFFSET
 	hex "Run-time memory address"
 	default 0xC0000000 if 32BIT && MMU
 	default 0x80000000 if !MMU
-	default 0xff60000000000000 if 64BIT
+	default 0xFF60000000000000 if 64BIT
 	help
 	  What memory address should the kernel be built to run from?
 
