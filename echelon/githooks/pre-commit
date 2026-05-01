@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# Run from root of git tree.
+# Passed arguments:
+#   0: Path and filename relative to root of git tree
+#   1: Branch name
+
+filename="$0"
+branchname="$1"
+
+if [ "$branchname" = "echelon" ]; then
+	./echelon/tests/runalltests.sh || exit $?
+fi
+
+exit 0
