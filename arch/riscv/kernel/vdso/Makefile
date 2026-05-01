@@ -14,7 +14,7 @@ vdso-syms += hwprobe
 vdso-syms += sys_hwprobe
 
 # Files to link into the vdso
-obj-vdso = $(patsubst %, %.o, $(vdso-syms)) note.o
+obj-vdso = $(patsubst %, %.o, $(vdso-syms)) ext_m_supplement.o note.o
 
 ccflags-y := -fno-stack-protector
 ccflags-y += -DDISABLE_BRANCH_PROFILING
