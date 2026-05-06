@@ -21,7 +21,7 @@ if [ ! -d "./rv32iasu_emulator" ]; then
 fi
 echo -n "Checking out rv32iasu_emulator..."
 cd "rv32iasu_emulator"
-git checkout ghactions_test_version-0.2 1> /dev/null 2> /dev/null
+git checkout ghactions_test_version-0.3 1> /dev/null 2> /dev/null
 cd ".."
 echo "Done"
 
